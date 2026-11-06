@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" data-theme="midnight">
   <head>
     <meta charset="utf-8" />
     <title>Splitwisely</title>
 
     <base href="/" />
 
-    <meta name="color-scheme" content="dark" />
+    <meta name="color-scheme" content="dark light" />
     <link
       href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
@@ -23,6 +23,24 @@
     <!-- add to homescreen for ios -->
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+
+    <!--
+      Apply the saved theme before first paint so there is no flash of the
+      default palette. Keep the key in sync with THEME_STORAGE_KEY
+      (src/app/core/theme/theme.ts).
+    -->
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem('splitwisely.theme');
+          if (stored) {
+            document.documentElement.setAttribute('data-theme', stored);
+          }
+        } catch (e) {
+          /* storage unavailable — keep the default theme */
+        }
+      })();
+    </script>
   </head>
 
   <body>

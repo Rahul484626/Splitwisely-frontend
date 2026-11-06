@@ -1,0 +1,241 @@
+/*
+ * Theme palettes.
+ *
+ * Every theme is selected with `data-theme` on <html>, set by ThemeService
+ * (and by the inline script in index.html before first paint, to avoid a flash
+ * of the default palette). Adding a theme = add a block here + an entry in
+ * src/app/core/theme/theme.ts.
+ *
+ * Selectors use `:root[data-theme='…']` (specificity 0,2,0) so they win over
+ * Ionic's `:root.ios` / `:root.md` palette variables, which global.scss imports
+ * before this file.
+ */
+
+/* Midnight — default indigo / teal glass over deep navy */
+:root,
+:root[data-theme='midnight'] {
+  color-scheme: dark;
+
+  --bg-base: #0b1020;
+  --bg-elevated: #131a33;
+  --blob-a: 99, 102, 241;
+  --blob-b: 20, 184, 166;
+  --blob-c: 236, 72, 153;
+  --blob-a-strength: 0.55;
+  --blob-b-strength: 0.45;
+  --blob-c-strength: 0.3;
+
+  --glass-fill: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.16);
+  --glass-fallback: rgba(20, 26, 46, 0.92);
+  --input-bg: rgba(11, 16, 32, 0.55);
+  --hairline: rgba(255, 255, 255, 0.12);
+
+  --text-primary: #f8fafc;
+  --text-secondary: #a5b4cf;
+  --accent: #818cf8;
+  --accent-gradient-from: #4f46e5;
+  --accent-gradient-to: #7c3aed;
+  --positive: #34d399;
+  --negative: #fb7185;
+  --neutral: #94a3b8;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #6366f1;
+  --ion-color-primary-rgb: 99, 102, 241;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #575bd4;
+  --ion-color-primary-tint: #7375f2;
+}
+
+/* Abyss — cool cyan / deep-sea blue */
+:root[data-theme='ocean'] {
+  color-scheme: dark;
+
+  --bg-base: #04121f;
+  --bg-elevated: #0a2134;
+  --blob-a: 56, 189, 248;
+  --blob-b: 45, 212, 191;
+  --blob-c: 96, 165, 250;
+  --blob-a-strength: 0.5;
+  --blob-b-strength: 0.42;
+  --blob-c-strength: 0.28;
+
+  --glass-fill: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(125, 211, 252, 0.22);
+  --glass-fallback: rgba(8, 29, 45, 0.94);
+  --input-bg: rgba(4, 18, 31, 0.6);
+  --hairline: rgba(125, 211, 252, 0.16);
+
+  --text-primary: #ecfeff;
+  --text-secondary: #9fc4d0;
+  --accent: #7dd3fc;
+  --accent-gradient-from: #0284c7;
+  --accent-gradient-to: #0f766e;
+  --positive: #2dd4bf;
+  --negative: #fb7185;
+  --neutral: #94a3b8;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #0ea5e9;
+  --ion-color-primary-rgb: 14, 165, 233;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #0c91cd;
+  --ion-color-primary-tint: #26aeea;
+}
+
+/* Canopy — mossy green with lime highlights */
+:root[data-theme='forest'] {
+  color-scheme: dark;
+
+  --bg-base: #07160f;
+  --bg-elevated: #10261a;
+  --blob-a: 52, 211, 153;
+  --blob-b: 163, 230, 53;
+  --blob-c: 20, 184, 166;
+  --blob-a-strength: 0.42;
+  --blob-b-strength: 0.3;
+  --blob-c-strength: 0.3;
+
+  --glass-fill: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(110, 231, 183, 0.2);
+  --glass-fallback: rgba(10, 31, 22, 0.93);
+  --input-bg: rgba(7, 22, 15, 0.6);
+  --hairline: rgba(110, 231, 183, 0.15);
+
+  --text-primary: #f0fdf4;
+  --text-secondary: #a7c4b2;
+  --accent: #6ee7b7;
+  --accent-gradient-from: #047857;
+  --accent-gradient-to: #0f766e;
+  --positive: #34d399;
+  --negative: #fda4af;
+  --neutral: #9bb3a5;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #10b981;
+  --ion-color-primary-rgb: 16, 185, 129;
+  --ion-color-primary-contrast: #04120c;
+  --ion-color-primary-contrast-rgb: 4, 18, 12;
+  --ion-color-primary-shade: #0ea372;
+  --ion-color-primary-tint: #28c08e;
+}
+
+/* Ember — rose-to-amber warmth */
+:root[data-theme='ember'] {
+  color-scheme: dark;
+
+  --bg-base: #1a0b10;
+  --bg-elevated: #2a1219;
+  --blob-a: 251, 113, 133;
+  --blob-b: 249, 115, 22;
+  --blob-c: 236, 72, 153;
+  --blob-a-strength: 0.45;
+  --blob-b-strength: 0.34;
+  --blob-c-strength: 0.26;
+
+  --glass-fill: rgba(255, 255, 255, 0.07);
+  --glass-border: rgba(253, 186, 116, 0.22);
+  --glass-fallback: rgba(38, 16, 22, 0.93);
+  --input-bg: rgba(26, 11, 16, 0.6);
+  --hairline: rgba(253, 186, 116, 0.16);
+
+  --text-primary: #fff7f5;
+  --text-secondary: #d3b0ae;
+  --accent: #fdba74;
+  --accent-gradient-from: #e11d48;
+  --accent-gradient-to: #f97316;
+  --positive: #4ade80;
+  --negative: #fb7185;
+  --neutral: #c3a3ab;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #f43f5e;
+  --ion-color-primary-rgb: 244, 63, 94;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #d73853;
+  --ion-color-primary-tint: #f5526e;
+}
+
+/* Amethyst — violet with pink glow */
+:root[data-theme='amethyst'] {
+  color-scheme: dark;
+
+  --bg-base: #120b24;
+  --bg-elevated: #1d1438;
+  --blob-a: 168, 85, 247;
+  --blob-b: 99, 102, 241;
+  --blob-c: 236, 72, 153;
+  --blob-a-strength: 0.48;
+  --blob-b-strength: 0.36;
+  --blob-c-strength: 0.28;
+
+  --glass-fill: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(196, 181, 253, 0.22);
+  --glass-fallback: rgba(28, 20, 51, 0.93);
+  --input-bg: rgba(18, 11, 36, 0.6);
+  --hairline: rgba(196, 181, 253, 0.15);
+
+  --text-primary: #faf5ff;
+  --text-secondary: #b9aed0;
+  --accent: #c4b5fd;
+  --accent-gradient-from: #9333ea;
+  --accent-gradient-to: #4f46e5;
+  --positive: #4ade80;
+  --negative: #fda4af;
+  --neutral: #b0a8c9;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #a855f7;
+  --ion-color-primary-rgb: 168, 85, 247;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #944bd9;
+  --ion-color-primary-tint: #b166f8;
+}
+
+/* Daylight — light glass over a soft sky */
+:root[data-theme='daylight'] {
+  color-scheme: light;
+
+  --bg-base: #eef2fb;
+  --bg-elevated: #ffffff;
+  --blob-a: 99, 102, 241;
+  --blob-b: 20, 184, 166;
+  --blob-c: 236, 72, 153;
+  --blob-a-strength: 0.3;
+  --blob-b-strength: 0.26;
+  --blob-c-strength: 0.18;
+
+  --glass-fill: rgba(255, 255, 255, 0.62);
+  --glass-border: rgba(15, 23, 42, 0.12);
+  --glass-fallback: rgba(255, 255, 255, 0.92);
+  --input-bg: rgba(255, 255, 255, 0.85);
+  --hairline: rgba(15, 23, 42, 0.1);
+
+  --text-primary: #0f172a;
+  --text-secondary: #4c5568;
+  --accent: #4338ca;
+  --accent-gradient-from: #4f46e5;
+  --accent-gradient-to: #7c3aed;
+  --positive: #047857;
+  --negative: #be123c;
+  --neutral: #64748b;
+
+  --ion-background-color: var(--bg-base);
+  --ion-text-color: var(--text-primary);
+  --ion-color-primary: #4f46e5;
+  --ion-color-primary-rgb: 79, 70, 229;
+  --ion-color-primary-contrast: #ffffff;
+  --ion-color-primary-contrast-rgb: 255, 255, 255;
+  --ion-color-primary-shade: #463eca;
+  --ion-color-primary-tint: #6159e8;
+}

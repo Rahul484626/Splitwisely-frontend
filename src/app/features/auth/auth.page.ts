@@ -1,10 +1,11 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { IonContent } from '@ionic/angular';
-import { AuthService } from '../../core/auth/auth.service';
+
 import type { ApiErrorBody } from '../../core/api/api.types';
+import { AuthService } from '../../core/auth/auth.service';
 import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
 
 @Component({
@@ -24,12 +25,12 @@ export class AuthPage {
   error = signal('');
   busy = signal(false);
 
-  toggleMode() {
+  toggleMode(): void {
     this.mode.update((m) => (m === 'login' ? 'signup' : 'login'));
     this.error.set('');
   }
 
-  async submit() {
+  async submit(): Promise<void> {
     this.error.set('');
     this.busy.set(true);
     try {

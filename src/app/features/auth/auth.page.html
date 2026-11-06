@@ -8,21 +8,15 @@
     <app-glass-card>
       <form class="auth-form" (ngSubmit)="submit()">
         @if (mode() === 'signup') {
-          <label>
-            <span>Name</span>
-            <input name="name" [(ngModel)]="name" autocomplete="name" required />
-          </label>
+        <label>
+          <span>Name</span>
+          <input name="name" [(ngModel)]="name" autocomplete="name" required />
+        </label>
         }
 
         <label>
           <span>Email</span>
-          <input
-            name="email"
-            type="email"
-            [(ngModel)]="email"
-            autocomplete="email"
-            required
-          />
+          <input name="email" type="email" [(ngModel)]="email" autocomplete="email" required />
         </label>
 
         <label>
@@ -38,7 +32,7 @@
         </label>
 
         @if (error()) {
-          <p class="auth-error" role="alert">{{ error() }}</p>
+        <p class="auth-error" role="alert">{{ error() }}</p>
         }
 
         <button class="btn-primary-gradient" type="submit" [disabled]="busy()">

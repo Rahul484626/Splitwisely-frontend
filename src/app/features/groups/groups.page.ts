@@ -1,11 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import type { OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { IonContent } from '@ionic/angular';
-import { AuthService } from '../../core/auth/auth.service';
-import { GroupsApiService } from '../../core/api/groups.service';
+
 import type { ApiErrorBody, GroupSummary } from '../../core/api/api.types';
+import { GroupsApiService } from '../../core/api/groups.service';
+import { AuthService } from '../../core/auth/auth.service';
 import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
 import { balanceCaption, balanceTone, formatMinor } from '../../shared/money';
 
@@ -30,12 +32,12 @@ export class GroupsPage implements OnInit {
   readonly creating = signal(false);
   newGroupName = '';
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     await this.auth.loadMe();
     await this.reload();
   }
 
-  async reload() {
+  async reload(): Promise<void> {
     this.loading.set(true);
     this.error.set('');
     try {
@@ -48,7 +50,7 @@ export class GroupsPage implements OnInit {
     }
   }
 
-  async createGroup() {
+  async createGroup(): Promise<void> {
     const name = this.newGroupName.trim();
     if (!name) {
       return;
@@ -64,10 +66,6 @@ export class GroupsPage implements OnInit {
     } finally {
       this.creating.set(false);
     }
-  }
-
-  async logout() {
-    await this.auth.logout();
   }
 
   private readError(err: unknown): string {

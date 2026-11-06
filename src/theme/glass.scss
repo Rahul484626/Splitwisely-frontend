@@ -1,8 +1,12 @@
 .app-canvas {
   position: relative;
   min-height: 100%;
-  background: var(--bg-base);
   overflow: hidden;
+  /* Extra tinted wash from the third blob color; the two large glows are
+     painted by the pseudo-elements below. */
+  background:
+    radial-gradient(110% 80% at 88% 0%, rgba(var(--blob-c), var(--blob-c-strength)), transparent 62%), var(--bg-base);
+  transition: background-color var(--theme-transition);
 }
 
 .app-canvas::before,
@@ -19,7 +23,11 @@
   left: -100px;
   width: 360px;
   height: 360px;
-  background: radial-gradient(circle at center, rgba(99, 102, 241, 0.55), rgba(99, 102, 241, 0) 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(var(--blob-a), var(--blob-a-strength)),
+    rgba(var(--blob-a), 0) 70%
+  );
 }
 
 .app-canvas::after {
@@ -27,7 +35,11 @@
   right: -120px;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle at center, rgba(20, 184, 166, 0.45), rgba(20, 184, 166, 0) 70%);
+  background: radial-gradient(
+    circle at center,
+    rgba(var(--blob-b), var(--blob-b-strength)),
+    rgba(var(--blob-b), 0) 70%
+  );
 }
 
 .glass-surface {

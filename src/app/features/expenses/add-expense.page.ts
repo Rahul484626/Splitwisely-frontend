@@ -1,13 +1,15 @@
-import { Component, computed, inject, OnInit, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import type { OnInit } from '@angular/core';
+import { Component, computed, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { IonContent } from '@ionic/angular';
-import { GroupsApiService } from '../../core/api/groups.service';
-import { ExpensesApiService } from '../../core/api/expenses.service';
+
 import type { ApiErrorBody, GroupDetail, GroupMember } from '../../core/api/api.types';
-import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
+import { ExpensesApiService } from '../../core/api/expenses.service';
+import { GroupsApiService } from '../../core/api/groups.service';
 import { AuthService } from '../../core/auth/auth.service';
+import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
 
 type SplitType = 'equal' | 'exact' | 'percentage' | 'shares';
 
@@ -43,7 +45,7 @@ export class AddExpensePage implements OnInit {
     return g.members.filter((m) => this.selected()[m.userId]);
   });
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const groupId = this.route.snapshot.paramMap.get('groupId');
     if (!groupId) {
       this.error.set('Missing group');
@@ -64,23 +66,23 @@ export class AddExpensePage implements OnInit {
     }
   }
 
-  toggleMember(userId: string) {
+  toggleMember(userId: string): void {
     this.selected.update((s) => ({ ...s, [userId]: !s[userId] }));
   }
 
-  setExact(userId: string, value: string | number) {
+  setExact(userId: string, value: string | number): void {
     this.exactShares.update((s) => ({ ...s, [userId]: String(value) }));
   }
 
-  setPercentage(userId: string, value: string | number) {
+  setPercentage(userId: string, value: string | number): void {
     this.percentageShares.update((s) => ({ ...s, [userId]: String(value) }));
   }
 
-  setWeight(userId: string, value: string | number) {
+  setWeight(userId: string, value: string | number): void {
     this.weightShares.update((s) => ({ ...s, [userId]: String(value) }));
   }
 
-  async submit() {
+  async submit(): Promise<void> {
     const g = this.group();
     if (!g) return;
 

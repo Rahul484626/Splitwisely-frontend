@@ -26,13 +26,16 @@
   font-weight: 800;
 }
 
-.linkish {
-  background: transparent;
-  border: 0;
-  color: var(--accent);
-  font: inherit;
-  font-weight: 600;
-  cursor: pointer;
+.icon-btn {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  font-size: 18px;
+  line-height: 1;
+  text-decoration: none;
 }
 
 .create-row {
@@ -46,7 +49,7 @@
   height: 48px;
   border-radius: var(--radius-control);
   border: 1px solid var(--glass-border);
-  background: rgba(11, 16, 32, 0.55);
+  background: var(--input-bg);
   color: var(--text-primary);
   padding: 0 14px;
   font: inherit;

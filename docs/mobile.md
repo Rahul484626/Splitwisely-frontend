@@ -52,11 +52,19 @@ Hydrated once in `initNativeShell()` before Angular boots.
 | Plugin | Use |
 | --- | --- |
 | Preferences | Access + refresh tokens |
-| Status Bar | Dark style, `#0B1020` |
+| Status Bar | Style + background follow the active theme (`ThemeService`) |
 | Splash Screen | Auto-hide, navy background |
 | Share | Settle-up suggestions share sheet |
 | Camera | `CameraService.takeReceiptPhoto()` ready (not in expense form yet) |
 | Push | Stretch — add `@capacitor/push-notifications` when FCM is configured |
+
+## Themes on native
+
+The web layer owns theming (`data-theme` on `<html>`). On native,
+`ThemeService` also updates the status bar style and background color whenever
+the theme changes — dark themes use white-on-dark, **Daylight** switches to
+light style with a pale background. Values come from the theme catalog, so a new
+theme needs no native changes.
 
 ## Android Studio requirements
 

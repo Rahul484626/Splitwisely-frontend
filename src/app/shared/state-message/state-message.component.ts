@@ -4,7 +4,12 @@ import { Component, Input } from '@angular/core';
   selector: 'app-state-message',
   standalone: true,
   template: `
-    <p class="state" [class.state--error]="tone === 'error'" role="status" [attr.aria-live]="tone === 'error' ? 'assertive' : 'polite'">
+    <p
+      class="state"
+      [class.state--error]="tone === 'error'"
+      role="status"
+      [attr.aria-live]="tone === 'error' ? 'assertive' : 'polite'"
+    >
       {{ text }}
     </p>
   `,

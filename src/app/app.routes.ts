@@ -1,4 +1,5 @@
 import type { Routes } from '@angular/router';
+
 import { authGuard, guestGuard } from './core/auth/auth.guard';
 
 export const routes: Routes = [
@@ -10,8 +11,7 @@ export const routes: Routes = [
   {
     path: 'dashboard',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/dashboard/dashboard.page').then((m) => m.DashboardPage),
+    loadComponent: () => import('./features/dashboard/dashboard.page').then((m) => m.DashboardPage),
   },
   {
     path: 'activity',
@@ -26,20 +26,22 @@ export const routes: Routes = [
   {
     path: 'groups/:groupId',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/groups/group-detail.page').then((m) => m.GroupDetailPage),
+    loadComponent: () => import('./features/groups/group-detail.page').then((m) => m.GroupDetailPage),
   },
   {
     path: 'groups/:groupId/expenses/new',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/expenses/add-expense.page').then((m) => m.AddExpensePage),
+    loadComponent: () => import('./features/expenses/add-expense.page').then((m) => m.AddExpensePage),
   },
   {
     path: 'groups/:groupId/settle',
     canActivate: [authGuard],
-    loadComponent: () =>
-      import('./features/settlements/settle-up.page').then((m) => m.SettleUpPage),
+    loadComponent: () => import('./features/settlements/settle-up.page').then((m) => m.SettleUpPage),
+  },
+  {
+    path: 'settings',
+    canActivate: [authGuard],
+    loadComponent: () => import('./features/settings/settings.page').then((m) => m.SettingsPage),
   },
   {
     path: 'home',

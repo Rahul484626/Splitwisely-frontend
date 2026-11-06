@@ -3,98 +3,84 @@
     <a routerLink="/groups" class="back">← Groups</a>
 
     @if (error()) {
-      <p class="error" role="alert">{{ error() }}</p>
+    <p class="error" role="alert">{{ error() }}</p>
+    } @if (group(); as g) {
+    <header class="detail-header">
+      <div>
+        <h1>{{ g.name }}</h1>
+        <p class="muted">{{ g.memberCount }} members · {{ g.currency }}</p>
+      </div>
+      <a class="btn-primary-gradient add-link" [routerLink]="['/groups', g.id, 'settle']"> Settle up </a>
+    </header>
+
+    <app-glass-card
+      label="Your balance"
+      [amount]="formatMinor(g.myNetMinor, true)"
+      [caption]="balanceCaption(g.myNetMinor) + ' in this group'"
+      [tone]="balanceTone(g.myNetMinor)"
+    />
+
+    @if (g.simplified?.length) {
+    <section class="panel glass-surface">
+      <h2>Simplified payments</h2>
+      @for (s of g.simplified!; track s.fromUserId + s.toUserId + s.amountMinor) {
+      <div class="simple-row">
+        <div>
+          <strong>{{ nameOf(s.fromUserId) }}</strong>
+          <span class="muted"> pays {{ nameOf(s.toUserId) }}</span>
+        </div>
+        <div class="amount tone-positive">{{ formatMinor(s.amountMinor) }}</div>
+      </div>
+      }
+    </section>
     }
 
-    @if (group(); as g) {
-      <header class="detail-header">
-        <div>
-          <h1>{{ g.name }}</h1>
-          <p class="muted">{{ g.memberCount }} members · {{ g.currency }}</p>
-        </div>
-        <a class="btn-primary-gradient add-link" [routerLink]="['/groups', g.id, 'settle']">
-          Settle up
-        </a>
-      </header>
+    <div class="actions">
+      <a class="btn-primary-gradient" [routerLink]="['/groups', g.id, 'expenses', 'new']"> Add expense </a>
+    </div>
 
-      <app-glass-card
-        label="Your balance"
-        [amount]="formatMinor(g.myNetMinor, true)"
-        [caption]="balanceCaption(g.myNetMinor) + ' in this group'"
-        [tone]="balanceTone(g.myNetMinor)"
-      />
-
-      @if (g.simplified?.length) {
-        <section class="panel glass-surface">
-          <h2>Simplified payments</h2>
-          @for (s of g.simplified!; track s.fromUserId + s.toUserId + s.amountMinor) {
-            <div class="simple-row">
-              <div>
-                <strong>{{ nameOf(s.fromUserId) }}</strong>
-                <span class="muted"> pays {{ nameOf(s.toUserId) }}</span>
-              </div>
-              <div class="amount tone-positive">{{ formatMinor(s.amountMinor) }}</div>
-            </div>
-          }
-        </section>
-      }
-
-      <div class="actions">
-        <a class="btn-primary-gradient" [routerLink]="['/groups', g.id, 'expenses', 'new']">
-          Add expense
-        </a>
-      </div>
-
-      <section class="panel glass-surface">
-        <h2>Expenses</h2>
-        @if (expenses().length === 0) {
-          <p class="muted">No expenses yet.</p>
-        } @else {
-          <ul class="expense-list">
-            @for (e of expenses(); track e.id) {
-              <li>
-                <div>
-                  <strong>{{ e.description || 'Expense' }}</strong>
-                  <span class="muted">{{ e.splitType }} · {{ formatMinor(e.amountMinor) }}</span>
-                </div>
-                <button type="button" class="linkish" (click)="deleteExpense(e.id)" [disabled]="busy()">
-                  Delete
-                </button>
-              </li>
-            }
-          </ul>
+    <section class="panel glass-surface">
+      <h2>Expenses</h2>
+      @if (expenses().length === 0) {
+      <p class="muted">No expenses yet.</p>
+      } @else {
+      <ul class="expense-list">
+        @for (e of expenses(); track e.id) {
+        <li>
+          <div>
+            <strong>{{ e.description || 'Expense' }}</strong>
+            <span class="muted">{{ e.splitType }} · {{ formatMinor(e.amountMinor) }}</span>
+          </div>
+          <button type="button" class="linkish" (click)="deleteExpense(e.id)" [disabled]="busy()">Delete</button>
+        </li>
         }
-      </section>
+      </ul>
+      }
+    </section>
 
-      <section class="panel glass-surface">
-        <h2>Members</h2>
-        <ul>
-          @for (m of g.members; track m.userId) {
-            <li>
-              <div>
-                <strong>{{ m.name }}</strong>
-                <span class="muted">{{ m.role }} · {{ m.email }}</span>
-              </div>
-              <div class="amount" [class]="'tone-' + balanceTone(m.netMinor ?? 0)">
-                {{ formatMinor(m.netMinor ?? 0, true) }}
-              </div>
-            </li>
-          }
-        </ul>
+    <section class="panel glass-surface">
+      <h2>Members</h2>
+      <ul>
+        @for (m of g.members; track m.userId) {
+        <li>
+          <div>
+            <strong>{{ m.name }}</strong>
+            <span class="muted">{{ m.role }} · {{ m.email }}</span>
+          </div>
+          <div class="amount" [class]="'tone-' + balanceTone(m.netMinor ?? 0)">
+            {{ formatMinor(m.netMinor ?? 0, true) }}
+          </div>
+        </li>
+        }
+      </ul>
 
-        <form class="add-member" (ngSubmit)="addMember()">
-          <input
-            name="memberEmail"
-            type="email"
-            [(ngModel)]="memberEmail"
-            placeholder="Add member by email"
-            required
-          />
-          <button class="btn-primary-gradient" type="submit" [disabled]="busy()">Add</button>
-        </form>
-      </section>
+      <form class="add-member" (ngSubmit)="addMember()">
+        <input name="memberEmail" type="email" [(ngModel)]="memberEmail" placeholder="Add member by email" required />
+        <button class="btn-primary-gradient" type="submit" [disabled]="busy()">Add</button>
+      </form>
+    </section>
     } @else if (!error()) {
-      <p class="muted">Loading…</p>
+    <p class="muted">Loading…</p>
     }
   </div>
 </ion-content>

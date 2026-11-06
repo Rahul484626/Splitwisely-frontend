@@ -1,131 +1,114 @@
 <ion-content [fullscreen]="true">
   <div class="app-canvas expense-shell">
     @if (group(); as g) {
-      <a class="back" [routerLink]="['/groups', g.id]">← {{ g.name }}</a>
-      <h1>Add expense</h1>
+    <a class="back" [routerLink]="['/groups', g.id]">← {{ g.name }}</a>
+    <h1>Add expense</h1>
 
-      <app-glass-card>
-        <form class="expense-form" (ngSubmit)="submit()">
-          <label>
-            <span>Description</span>
-            <input name="description" [(ngModel)]="description" placeholder="Dinner" />
+    <app-glass-card>
+      <form class="expense-form" (ngSubmit)="submit()">
+        <label>
+          <span>Description</span>
+          <input name="description" [(ngModel)]="description" placeholder="Dinner" />
+        </label>
+
+        <label>
+          <span>Amount (₹)</span>
+          <input name="amount" type="number" step="0.01" min="0.01" [(ngModel)]="amountRupees" required />
+        </label>
+
+        <label>
+          <span>Paid by</span>
+          <select name="paidBy" [(ngModel)]="paidBy">
+            @for (m of g.members; track m.userId) {
+            <option [value]="m.userId">{{ m.name }}</option>
+            }
+          </select>
+        </label>
+
+        <label>
+          <span>Split type</span>
+          <select name="splitType" [(ngModel)]="splitType">
+            <option value="equal">Equal</option>
+            <option value="exact">Exact amounts</option>
+            <option value="percentage">Percentages</option>
+            <option value="shares">Shares</option>
+          </select>
+        </label>
+
+        <fieldset>
+          <legend>Participants</legend>
+          @for (m of g.members; track m.userId) {
+          <label class="check-row">
+            <input type="checkbox" [checked]="selected()[m.userId]" (change)="toggleMember(m.userId)" />
+            <span>{{ m.name }}</span>
           </label>
+          }
+        </fieldset>
 
+        @if (splitType === 'exact') {
+        <fieldset>
+          <legend>Exact amounts (₹)</legend>
+          @for (m of participants(); track m.userId) {
           <label>
-            <span>Amount (₹)</span>
+            <span>{{ m.name }}</span>
             <input
-              name="amount"
               type="number"
               step="0.01"
-              min="0.01"
-              [(ngModel)]="amountRupees"
-              required
+              min="0"
+              [ngModel]="exactShares()[m.userId] || ''"
+              (ngModelChange)="setExact(m.userId, $event)"
+              [name]="'exact-' + m.userId"
             />
           </label>
-
+          }
+        </fieldset>
+        } @if (splitType === 'percentage') {
+        <fieldset>
+          <legend>Percentages</legend>
+          @for (m of participants(); track m.userId) {
           <label>
-            <span>Paid by</span>
-            <select name="paidBy" [(ngModel)]="paidBy">
-              @for (m of g.members; track m.userId) {
-                <option [value]="m.userId">{{ m.name }}</option>
-              }
-            </select>
+            <span>{{ m.name }}</span>
+            <input
+              type="number"
+              step="0.01"
+              min="0"
+              [ngModel]="percentageShares()[m.userId] || ''"
+              (ngModelChange)="setPercentage(m.userId, $event)"
+              [name]="'pct-' + m.userId"
+            />
           </label>
-
+          }
+        </fieldset>
+        } @if (splitType === 'shares') {
+        <fieldset>
+          <legend>Shares</legend>
+          @for (m of participants(); track m.userId) {
           <label>
-            <span>Split type</span>
-            <select name="splitType" [(ngModel)]="splitType">
-              <option value="equal">Equal</option>
-              <option value="exact">Exact amounts</option>
-              <option value="percentage">Percentages</option>
-              <option value="shares">Shares</option>
-            </select>
+            <span>{{ m.name }}</span>
+            <input
+              type="number"
+              step="1"
+              min="0"
+              [ngModel]="weightShares()[m.userId] || ''"
+              (ngModelChange)="setWeight(m.userId, $event)"
+              [name]="'share-' + m.userId"
+            />
           </label>
-
-          <fieldset>
-            <legend>Participants</legend>
-            @for (m of g.members; track m.userId) {
-              <label class="check-row">
-                <input
-                  type="checkbox"
-                  [checked]="selected()[m.userId]"
-                  (change)="toggleMember(m.userId)"
-                />
-                <span>{{ m.name }}</span>
-              </label>
-            }
-          </fieldset>
-
-          @if (splitType === 'exact') {
-            <fieldset>
-              <legend>Exact amounts (₹)</legend>
-              @for (m of participants(); track m.userId) {
-                <label>
-                  <span>{{ m.name }}</span>
-                  <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    [ngModel]="exactShares()[m.userId] || ''"
-                    (ngModelChange)="setExact(m.userId, $event)"
-                    [name]="'exact-' + m.userId"
-                  />
-                </label>
-              }
-            </fieldset>
           }
+        </fieldset>
+        } @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+        }
 
-          @if (splitType === 'percentage') {
-            <fieldset>
-              <legend>Percentages</legend>
-              @for (m of participants(); track m.userId) {
-                <label>
-                  <span>{{ m.name }}</span>
-                  <input
-                    type="number"
-                    step="0.01"
-                    min="0"
-                    [ngModel]="percentageShares()[m.userId] || ''"
-                    (ngModelChange)="setPercentage(m.userId, $event)"
-                    [name]="'pct-' + m.userId"
-                  />
-                </label>
-              }
-            </fieldset>
-          }
-
-          @if (splitType === 'shares') {
-            <fieldset>
-              <legend>Shares</legend>
-              @for (m of participants(); track m.userId) {
-                <label>
-                  <span>{{ m.name }}</span>
-                  <input
-                    type="number"
-                    step="1"
-                    min="0"
-                    [ngModel]="weightShares()[m.userId] || ''"
-                    (ngModelChange)="setWeight(m.userId, $event)"
-                    [name]="'share-' + m.userId"
-                  />
-                </label>
-              }
-            </fieldset>
-          }
-
-          @if (error()) {
-            <p class="error" role="alert">{{ error() }}</p>
-          }
-
-          <button class="btn-primary-gradient" type="submit" [disabled]="busy()">
-            {{ busy() ? 'Saving…' : 'Save expense' }}
-          </button>
-        </form>
-      </app-glass-card>
+        <button class="btn-primary-gradient" type="submit" [disabled]="busy()">
+          {{ busy() ? 'Saving…' : 'Save expense' }}
+        </button>
+      </form>
+    </app-glass-card>
     } @else if (error()) {
-      <p class="error">{{ error() }}</p>
+    <p class="error">{{ error() }}</p>
     } @else {
-      <p class="muted">Loading…</p>
+    <p class="muted">Loading…</p>
     }
   </div>
 </ion-content>

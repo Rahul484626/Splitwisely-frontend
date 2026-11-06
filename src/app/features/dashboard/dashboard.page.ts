@@ -1,18 +1,16 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { IonContent, ViewWillEnter } from '@ionic/angular';
-import { AuthService } from '../../core/auth/auth.service';
-import { GroupsApiService } from '../../core/api/groups.service';
-import {
-  BalancesApiService,
-  type ActivityItem,
-  type DashboardTotals,
-} from '../../core/api/balances.service';
+import type { ViewWillEnter } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
+
 import type { ApiErrorBody, GroupSummary } from '../../core/api/api.types';
+import { BalancesApiService, type ActivityItem, type DashboardTotals } from '../../core/api/balances.service';
+import { GroupsApiService } from '../../core/api/groups.service';
+import { AuthService } from '../../core/auth/auth.service';
 import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
-import { StateMessageComponent } from '../../shared/state-message/state-message.component';
 import { balanceCaption, balanceTone, formatMinor } from '../../shared/money';
+import { StateMessageComponent } from '../../shared/state-message/state-message.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -35,11 +33,11 @@ export class DashboardPage implements ViewWillEnter {
   readonly balanceCaption = balanceCaption;
   readonly balanceTone = balanceTone;
 
-  ionViewWillEnter() {
+  ionViewWillEnter(): void {
     void this.auth.loadMe().then(() => this.reload());
   }
 
-  async reload() {
+  async reload(): Promise<void> {
     this.loading.set(true);
     this.error.set('');
     try {
@@ -56,10 +54,6 @@ export class DashboardPage implements ViewWillEnter {
     } finally {
       this.loading.set(false);
     }
-  }
-
-  async logout() {
-    await this.auth.logout();
   }
 
   activityLabel(item: ActivityItem): string {

@@ -1,10 +1,12 @@
 import { DatePipe } from '@angular/common';
-import { Component, inject, OnInit, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
+import type { OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
+import { RouterLink } from '@angular/router';
 import { IonContent } from '@ionic/angular';
-import { BalancesApiService, type ActivityItem } from '../../core/api/balances.service';
+
 import type { ApiErrorBody } from '../../core/api/api.types';
+import { BalancesApiService, type ActivityItem } from '../../core/api/balances.service';
 
 @Component({
   selector: 'app-activity',
@@ -18,7 +20,7 @@ export class ActivityPage implements OnInit {
   readonly items = signal<ActivityItem[]>([]);
   readonly error = signal('');
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     try {
       const res = await this.balancesApi.activity(50);
       this.items.set(res.items);

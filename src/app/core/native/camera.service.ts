@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Capacitor } from '@capacitor/core';
 import { Camera, CameraResultType, CameraSource } from '@capacitor/camera';
+import { Capacitor } from '@capacitor/core';
 
 /** Stretch helper for receipt photos (Phase 6+). Not wired into expense form yet. */
 @Injectable({ providedIn: 'root' })

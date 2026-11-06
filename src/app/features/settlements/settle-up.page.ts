@@ -1,17 +1,16 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
+import type { OnInit } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
 import { IonContent } from '@ionic/angular';
-import { GroupsApiService } from '../../core/api/groups.service';
-import {
-  BalancesApiService,
-  type SimplifiedPayment,
-} from '../../core/api/balances.service';
+
 import type { ApiErrorBody, GroupDetail } from '../../core/api/api.types';
+import { BalancesApiService, type SimplifiedPayment } from '../../core/api/balances.service';
+import { GroupsApiService } from '../../core/api/groups.service';
+import { ShareService } from '../../core/native/share.service';
 import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
 import { formatMinor } from '../../shared/money';
-import { ShareService } from '../../core/native/share.service';
 
 @Component({
   selector: 'app-settle-up',
@@ -38,17 +37,14 @@ export class SettleUpPage implements OnInit {
 
   readonly formatMinor = formatMinor;
 
-  async ngOnInit() {
+  async ngOnInit(): Promise<void> {
     const groupId = this.route.snapshot.paramMap.get('groupId');
     if (!groupId) {
       this.error.set('Missing group');
       return;
     }
     try {
-      const [group, balances] = await Promise.all([
-        this.groupsApi.get(groupId),
-        this.balancesApi.balances(groupId),
-      ]);
+      const [group, balances] = await Promise.all([this.groupsApi.get(groupId), this.balancesApi.balances(groupId)]);
       this.group.set(group);
       this.suggestions.set(balances.simplified);
       const prefill = balances.simplified[0];
@@ -69,13 +65,13 @@ export class SettleUpPage implements OnInit {
     return this.group()?.members.find((m) => m.userId === userId)?.name ?? userId.slice(0, 8);
   }
 
-  useSuggestion(p: SimplifiedPayment) {
+  useSuggestion(p: SimplifiedPayment): void {
     this.fromUserId = p.fromUserId;
     this.toUserId = p.toUserId;
     this.amountRupees = String(p.amountMinor / 100);
   }
 
-  async shareSuggestions() {
+  async shareSuggestions(): Promise<void> {
     const lines = this.suggestions().map(
       (s) => `${this.nameOf(s.fromUserId)} pays ${this.nameOf(s.toUserId)} ${formatMinor(s.amountMinor)}`,
     );
@@ -83,7 +79,7 @@ export class SettleUpPage implements OnInit {
     await this.share.shareText('Splitwisely settle up', lines.join('\n'));
   }
 
-  async submit() {
+  async submit(): Promise<void> {
     const g = this.group();
     if (!g) return;
     const amountMinor = Math.round(Number(this.amountRupees) * 100);

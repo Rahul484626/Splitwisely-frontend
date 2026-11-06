@@ -1,8 +1,8 @@
-import { expect, test } from '@playwright/test';
+import { expect, test, type APIRequestContext } from '@playwright/test';
 
 const api = process.env.API_BASE_URL ?? 'http://localhost:3000/api/v1';
 
-async function apiReady(request: import('@playwright/test').APIRequestContext) {
+async function apiReady(request: APIRequestContext): Promise<boolean> {
   const res = await request.get(`${api.replace(/\/api\/v1$/, '')}/health`);
   return res.ok();
 }
@@ -46,10 +46,7 @@ test.describe('main expense flow', () => {
     await page.locator('input[name="amount"]').fill('100');
 
     const createResp = page.waitForResponse(
-      (res) =>
-        res.url().includes('/expenses') &&
-        res.request().method() === 'POST' &&
-        res.status() === 201,
+      (res) => res.url().includes('/expenses') && res.request().method() === 'POST' && res.status() === 201,
     );
     await page.getByRole('button', { name: 'Save expense' }).click();
     await createResp;

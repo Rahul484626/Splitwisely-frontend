@@ -1,74 +1,64 @@
 <ion-content [fullscreen]="true">
   <div class="app-canvas settle-shell">
     @if (group(); as g) {
-      <a class="back" [routerLink]="['/groups', g.id]">← {{ g.name }}</a>
-      <h1>Settle up</h1>
+    <a class="back" [routerLink]="['/groups', g.id]">← {{ g.name }}</a>
+    <h1>Settle up</h1>
 
-      @if (suggestions().length) {
-        <section class="panel glass-surface">
-          <div class="panel-head">
-            <h2>Suggested</h2>
-            <button type="button" class="linkish" (click)="shareSuggestions()">Share</button>
-          </div>
-          @for (s of suggestions(); track s.fromUserId + s.toUserId + s.amountMinor) {
-            <button type="button" class="suggest-row" (click)="useSuggestion(s)">
-              <span
-                ><strong>{{ nameOf(s.fromUserId) }}</strong> pays
-                <strong>{{ nameOf(s.toUserId) }}</strong></span
-              >
-              <span class="amount tone-positive">{{ formatMinor(s.amountMinor) }}</span>
-            </button>
-          }
-        </section>
+    @if (suggestions().length) {
+    <section class="panel glass-surface">
+      <div class="panel-head">
+        <h2>Suggested</h2>
+        <button type="button" class="linkish" (click)="shareSuggestions()">Share</button>
+      </div>
+      @for (s of suggestions(); track s.fromUserId + s.toUserId + s.amountMinor) {
+      <button type="button" class="suggest-row" (click)="useSuggestion(s)">
+        <span><strong>{{ nameOf(s.fromUserId) }}</strong> pays <strong>{{ nameOf(s.toUserId) }}</strong></span>
+        <span class="amount tone-positive">{{ formatMinor(s.amountMinor) }}</span>
+      </button>
       }
+    </section>
+    }
 
-      <app-glass-card>
-        <form class="settle-form" (ngSubmit)="submit()">
-          <label>
-            <span>From</span>
-            <select name="fromUserId" [(ngModel)]="fromUserId">
-              @for (m of g.members; track m.userId) {
-                <option [value]="m.userId">{{ m.name }}</option>
-              }
-            </select>
-          </label>
-          <label>
-            <span>To</span>
-            <select name="toUserId" [(ngModel)]="toUserId">
-              @for (m of g.members; track m.userId) {
-                <option [value]="m.userId">{{ m.name }}</option>
-              }
-            </select>
-          </label>
-          <label>
-            <span>Amount (₹)</span>
-            <input
-              name="amount"
-              type="number"
-              step="0.01"
-              min="0.01"
-              [(ngModel)]="amountRupees"
-              required
-            />
-          </label>
-          <label>
-            <span>Note</span>
-            <input name="note" [(ngModel)]="note" placeholder="Optional" />
-          </label>
+    <app-glass-card>
+      <form class="settle-form" (ngSubmit)="submit()">
+        <label>
+          <span>From</span>
+          <select name="fromUserId" [(ngModel)]="fromUserId">
+            @for (m of g.members; track m.userId) {
+            <option [value]="m.userId">{{ m.name }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          <span>To</span>
+          <select name="toUserId" [(ngModel)]="toUserId">
+            @for (m of g.members; track m.userId) {
+            <option [value]="m.userId">{{ m.name }}</option>
+            }
+          </select>
+        </label>
+        <label>
+          <span>Amount (₹)</span>
+          <input name="amount" type="number" step="0.01" min="0.01" [(ngModel)]="amountRupees" required />
+        </label>
+        <label>
+          <span>Note</span>
+          <input name="note" [(ngModel)]="note" placeholder="Optional" />
+        </label>
 
-          @if (error()) {
-            <p class="error" role="alert">{{ error() }}</p>
-          }
+        @if (error()) {
+        <p class="error" role="alert">{{ error() }}</p>
+        }
 
-          <button class="btn-primary-gradient" type="submit" [disabled]="busy()">
-            {{ busy() ? 'Saving…' : 'Record settlement' }}
-          </button>
-        </form>
-      </app-glass-card>
+        <button class="btn-primary-gradient" type="submit" [disabled]="busy()">
+          {{ busy() ? 'Saving…' : 'Record settlement' }}
+        </button>
+      </form>
+    </app-glass-card>
     } @else if (error()) {
-      <p class="error">{{ error() }}</p>
+    <p class="error">{{ error() }}</p>
     } @else {
-      <p class="muted">Loading…</p>
+    <p class="muted">Loading…</p>
     }
   </div>
 </ion-content>

@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { IonContent } from '@ionic/angular';
-import { GlassCardComponent } from '../shared/glass-card/glass-card.component';
+
 import { environment } from '../../environments/environment';
+import { GlassCardComponent } from '../shared/glass-card/glass-card.component';
 
 @Component({
   selector: 'app-home',

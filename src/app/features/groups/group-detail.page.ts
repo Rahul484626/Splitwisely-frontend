@@ -1,11 +1,13 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, inject, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { HttpErrorResponse } from '@angular/common/http';
-import { IonContent, ViewWillEnter } from '@ionic/angular';
-import { GroupsApiService } from '../../core/api/groups.service';
-import { ExpensesApiService, type Expense } from '../../core/api/expenses.service';
+import type { ViewWillEnter } from '@ionic/angular';
+import { IonContent } from '@ionic/angular';
+
 import type { ApiErrorBody, GroupDetail } from '../../core/api/api.types';
+import { ExpensesApiService, type Expense } from '../../core/api/expenses.service';
+import { GroupsApiService } from '../../core/api/groups.service';
 import { GlassCardComponent } from '../../shared/glass-card/glass-card.component';
 import { balanceCaption, balanceTone, formatMinor } from '../../shared/money';
 
@@ -30,7 +32,7 @@ export class GroupDetailPage implements ViewWillEnter {
   readonly balanceCaption = balanceCaption;
   readonly balanceTone = balanceTone;
 
-  ionViewWillEnter() {
+  ionViewWillEnter(): void {
     const id = this.route.snapshot.paramMap.get('groupId');
     if (!id) {
       this.error.set('Missing group id');
@@ -39,14 +41,11 @@ export class GroupDetailPage implements ViewWillEnter {
     void this.load(id);
   }
 
-  async load(id: string) {
+  async load(id: string): Promise<void> {
     this.busy.set(true);
     this.error.set('');
     try {
-      const [group, expenseList] = await Promise.all([
-        this.groupsApi.get(id),
-        this.expensesApi.list(id),
-      ]);
+      const [group, expenseList] = await Promise.all([this.groupsApi.get(id), this.expensesApi.list(id)]);
       this.group.set(group);
       this.expenses.set(expenseList.items);
     } catch (err) {
@@ -56,7 +55,7 @@ export class GroupDetailPage implements ViewWillEnter {
     }
   }
 
-  async addMember() {
+  async addMember(): Promise<void> {
     const g = this.group();
     const email = this.memberEmail.trim();
     if (!g || !email) {
@@ -75,7 +74,7 @@ export class GroupDetailPage implements ViewWillEnter {
     }
   }
 
-  async deleteExpense(expenseId: string) {
+  async deleteExpense(expenseId: string): Promise<void> {
     const g = this.group();
     if (!g) return;
     this.busy.set(true);

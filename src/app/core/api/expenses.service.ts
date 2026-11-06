@@ -1,6 +1,7 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+
 import { resolveApiBaseUrl } from './api-config';
 
 export type ExpenseSplit = {
@@ -45,20 +46,14 @@ export class ExpensesApiService {
   }
 
   list(groupId: string): Promise<{ items: Expense[] }> {
-    return firstValueFrom(
-      this.http.get<{ items: Expense[] }>(`${this.base}/groups/${groupId}/expenses`),
-    );
+    return firstValueFrom(this.http.get<{ items: Expense[] }>(`${this.base}/groups/${groupId}/expenses`));
   }
 
   create(groupId: string, body: CreateExpenseInput): Promise<Expense> {
-    return firstValueFrom(
-      this.http.post<Expense>(`${this.base}/groups/${groupId}/expenses`, body),
-    );
+    return firstValueFrom(this.http.post<Expense>(`${this.base}/groups/${groupId}/expenses`, body));
   }
 
   softDelete(groupId: string, expenseId: string): Promise<void> {
-    return firstValueFrom(
-      this.http.delete<void>(`${this.base}/groups/${groupId}/expenses/${expenseId}`),
-    );
+    return firstValueFrom(this.http.delete<void>(`${this.base}/groups/${groupId}/expenses/${expenseId}`));
   }
 }

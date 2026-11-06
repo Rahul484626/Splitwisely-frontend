@@ -3,3 +3,7 @@
 # Gradle's build output.
 android/
 ios/
+
+# Generated from the backend OpenAPI document (npm run openapi:sync).
+# Regenerating would undo any formatting, so leave it alone.
+src/app/core/api/generated/

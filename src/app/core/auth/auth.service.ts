@@ -1,9 +1,11 @@
-import { Injectable, inject, signal } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { firstValueFrom } from 'rxjs';
-import type { AuthResponse, User } from '../api/api.types';
+
 import { resolveApiBaseUrl } from '../api/api-config';
+import type { AuthResponse, User } from '../api/api.types';
+
 import { tokenStorage } from './token-storage';
 
 @Injectable({ providedIn: 'root' })
@@ -21,11 +23,7 @@ export class AuthService {
     return Boolean(tokenStorage.getAccess());
   }
 
-  async register(input: {
-    name: string;
-    email: string;
-    password: string;
-  }): Promise<void> {
+  async register(input: { name: string; email: string; password: string }): Promise<void> {
     const res = await firstValueFrom(
       this.http.post<AuthResponse>(`${this.base}/auth/register`, {
         ...input,
@@ -36,9 +34,7 @@ export class AuthService {
   }
 
   async login(input: { email: string; password: string }): Promise<void> {
-    const res = await firstValueFrom(
-      this.http.post<AuthResponse>(`${this.base}/auth/login`, input),
-    );
+    const res = await firstValueFrom(this.http.post<AuthResponse>(`${this.base}/auth/login`, input));
     await this.applySession(res);
   }
 

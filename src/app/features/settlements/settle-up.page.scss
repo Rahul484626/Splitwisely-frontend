@@ -65,7 +65,7 @@ h1 {
   text-align: left;
   padding: 8px 0;
   cursor: pointer;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  border-bottom: 1px solid var(--hairline);
 }
 
 .settle-form {
@@ -87,7 +87,7 @@ h1 {
   height: 48px;
   border-radius: var(--radius-control);
   border: 1px solid var(--glass-border);
-  background: rgba(11, 16, 32, 0.55);
+  background: var(--input-bg);
   color: var(--text-primary);
   padding: 0 14px;
   font: inherit;

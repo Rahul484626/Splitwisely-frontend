@@ -1,6 +1,7 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
+
 import { resolveApiBaseUrl } from './api-config';
 
 export type BalanceMember = { userId: string; netMinor: number };
@@ -55,18 +56,14 @@ export class BalancesApiService {
   }
 
   balances(groupId: string): Promise<GroupBalances> {
-    return firstValueFrom(
-      this.http.get<GroupBalances>(`${this.base}/groups/${groupId}/balances`),
-    );
+    return firstValueFrom(this.http.get<GroupBalances>(`${this.base}/groups/${groupId}/balances`));
   }
 
   createSettlement(
     groupId: string,
     body: { fromUserId: string; toUserId: string; amountMinor: number; note?: string },
   ): Promise<Settlement> {
-    return firstValueFrom(
-      this.http.post<Settlement>(`${this.base}/groups/${groupId}/settlements`, body),
-    );
+    return firstValueFrom(this.http.post<Settlement>(`${this.base}/groups/${groupId}/settlements`, body));
   }
 
   activity(limit = 20): Promise<{ items: ActivityItem[] }> {
@@ -79,9 +76,7 @@ export class BalancesApiService {
 
   friends(): Promise<{ items: { userId: string; name: string; sharedGroupCount: number }[] }> {
     return firstValueFrom(
-      this.http.get<{ items: { userId: string; name: string; sharedGroupCount: number }[] }>(
-        `${this.base}/friends`,
-      ),
+      this.http.get<{ items: { userId: string; name: string; sharedGroupCount: number }[] }>(`${this.base}/friends`),
     );
   }
 }

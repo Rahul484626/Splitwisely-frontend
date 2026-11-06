@@ -1,8 +1,9 @@
-import { Injectable, inject } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Injectable, inject } from '@angular/core';
 import { firstValueFrom } from 'rxjs';
-import type { GroupDetail, GroupSummary } from './api.types';
+
 import { resolveApiBaseUrl } from './api-config';
+import type { GroupDetail, GroupSummary } from './api.types';
 
 @Injectable({ providedIn: 'root' })
 export class GroupsApiService {
@@ -24,9 +25,7 @@ export class GroupsApiService {
     return firstValueFrom(this.http.get<GroupDetail>(`${this.base}/groups/${groupId}`));
   }
 
-  addMember(groupId: string, email: string) {
-    return firstValueFrom(
-      this.http.post(`${this.base}/groups/${groupId}/members`, { email }),
-    );
+  addMember(groupId: string, email: string): Promise<unknown> {
+    return firstValueFrom(this.http.post(`${this.base}/groups/${groupId}/members`, { email }));
   }
 }

@@ -43,6 +43,31 @@ Primary button gradient in mockups: `linear-gradient(135deg, #4F46E5, #7C3AED)` 
 
 Light theme later: swap token values only.
 
+## Themes
+
+Palettes live in [`src/theme/themes.scss`](../src/theme/themes.scss) and are selected with `data-theme` on `<html>`. The catalog (names, swatches, light/dark scheme) is in [`src/app/core/theme/theme.ts`](../src/app/core/theme/theme.ts); `ThemeService` applies and persists the choice to `localStorage` under `splitwisely.theme`.
+
+| Id | Name | Mood |
+| --- | --- | --- |
+| `midnight` | Midnight | Default indigo + teal on deep navy |
+| `ocean` | Ocean | Cyan / teal deep-sea |
+| `forest` | Forest | Moss green, lime highlights |
+| `ember` | Ember | Rose → amber warmth |
+| `amethyst` | Amethyst | Violet with pink glow |
+| `daylight` | Daylight | Light glass over soft sky |
+
+Rules for adding a theme:
+
+1. Add a `:root[data-theme='<id>']` block in `themes.scss` defining **every** color token (the build does not inherit the default palette).
+2. Add an entry to `THEMES` in `src/app/core/theme/theme.ts` (id, name, description, 3 swatches, `scheme`, status bar color).
+3. Nothing else — the picker on **Settings** renders from the catalog.
+
+Both the theme selector and the default block use `:root[data-theme='…']` (specificity 0,2,0) so they override Ionic's `:root.ios` / `:root.md` variables.
+
+Never hardcode palette colors in component styles. Use `var(--input-bg)`, `var(--hairline)`, `var(--text-secondary)`, and the blob/glass tokens so every theme keeps working. The single exception is text/markup that must stay white on the accent gradient.
+
+The saved theme is applied by a small inline script in `src/index.html` **before first paint** to avoid a flash of the default palette; keep its storage key in sync with `THEME_STORAGE_KEY`.
+
 ## Rules
 
 - Glass accent on cards, bottom nav, modals; dense scrolling lists use more opaque fill.

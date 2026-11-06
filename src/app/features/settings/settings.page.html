@@ -1,0 +1,62 @@
+<ion-content [fullscreen]="true">
+  <div class="app-canvas settings-shell">
+    <a routerLink="/dashboard" class="back">← Home</a>
+    <h1>Settings</h1>
+    <section class="panel glass-surface">
+      <div class="panel-head">
+        <h2>Appearance</h2>
+        <span class="muted">Saved on this device</span>
+      </div>
+
+      <div class="theme-grid" role="radiogroup" aria-label="Color theme">
+        @for (t of themeService.themes; track t.id) {
+        <button
+          type="button"
+          class="theme-card"
+          role="radio"
+          [attr.aria-checked]="themeService.current() === t.id"
+          [class.theme-card--active]="themeService.current() === t.id"
+          (click)="selectTheme(t.id)"
+        >
+          <span class="theme-card__preview" aria-hidden="true">
+            @for (c of t.swatches; track c) {
+            <span class="theme-card__swatch" [style.background]="c"></span>
+            }
+          </span>
+          <span class="theme-card__name">{{ t.name }}</span>
+          <span class="theme-card__desc">{{ t.description }}</span>
+          @if (themeService.current() === t.id) {
+          <span class="theme-card__check" aria-hidden="true">✓</span>
+          }
+        </button>
+        }
+      </div>
+    </section>
+
+    <section class="panel glass-surface">
+      <h2>Account</h2>
+      @if (auth.user(); as u) {
+      <div class="field">
+        <span class="field__label">Name</span>
+        <span class="field__value">{{ u.name }}</span>
+      </div>
+      <div class="field">
+        <span class="field__label">Email</span>
+        <span class="field__value">{{ u.email }}</span>
+      </div>
+      <div class="field">
+        <span class="field__label">Default currency</span>
+        <span class="field__value">{{ u.defaultCurrency }}</span>
+      </div>
+      } @else {
+      <p class="muted">Loading account…</p>
+      }
+
+      <button type="button" class="btn-ghost" (click)="logout()" [disabled]="signingOut()">
+        {{ signingOut() ? 'Signing out…' : 'Sign out' }}
+      </button>
+    </section>
+
+    <p class="muted version">Splitwisely v{{ appVersion }}</p>
+  </div>
+</ion-content>

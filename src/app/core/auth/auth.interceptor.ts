@@ -1,6 +1,8 @@
-import { HttpErrorResponse, HttpInterceptorFn } from '@angular/common/http';
+import type { HttpInterceptorFn } from '@angular/common/http';
+import { HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
 import { catchError, from, switchMap, throwError } from 'rxjs';
+
 import { AuthService } from './auth.service';
 import { tokenStorage } from './token-storage';
 
@@ -11,10 +13,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
   const access = tokenStorage.getAccess();
   const isAuthRoute = /\/auth\/(login|register|refresh|logout)\b/.test(req.url);
 
-  const authedReq =
-    access && !isAuthRoute
-      ? req.clone({ setHeaders: { Authorization: `Bearer ${access}` } })
-      : req;
+  const authedReq = access && !isAuthRoute ? req.clone({ setHeaders: { Authorization: `Bearer ${access}` } }) : req;
 
   return next(authedReq).pipe(
     catchError((err: unknown) => {
@@ -34,9 +33,7 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       }
 
       return from(refreshInFlight).pipe(
-        switchMap((token) =>
-          next(req.clone({ setHeaders: { Authorization: `Bearer ${token}` } })),
-        ),
+        switchMap((token) => next(req.clone({ setHeaders: { Authorization: `Bearer ${token}` } }))),
         catchError((refreshErr) => {
           void auth.logout();
           return throwError(() => refreshErr);
