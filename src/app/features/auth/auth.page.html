@@ -1,0 +1,54 @@
+<ion-content [fullscreen]="true">
+  <div class="app-canvas auth-shell">
+    <header class="auth-shell__brand">
+      <h1>Splitwisely</h1>
+      <p>{{ mode() === 'login' ? 'Sign in to continue' : 'Create your account' }}</p>
+    </header>
+
+    <app-glass-card>
+      <form class="auth-form" (ngSubmit)="submit()">
+        @if (mode() === 'signup') {
+          <label>
+            <span>Name</span>
+            <input name="name" [(ngModel)]="name" autocomplete="name" required />
+          </label>
+        }
+
+        <label>
+          <span>Email</span>
+          <input
+            name="email"
+            type="email"
+            [(ngModel)]="email"
+            autocomplete="email"
+            required
+          />
+        </label>
+
+        <label>
+          <span>Password</span>
+          <input
+            name="password"
+            type="password"
+            [(ngModel)]="password"
+            [attr.autocomplete]="mode() === 'login' ? 'current-password' : 'new-password'"
+            required
+            minlength="8"
+          />
+        </label>
+
+        @if (error()) {
+          <p class="auth-error" role="alert">{{ error() }}</p>
+        }
+
+        <button class="btn-primary-gradient" type="submit" [disabled]="busy()">
+          {{ busy() ? 'Please wait…' : mode() === 'login' ? 'Sign in' : 'Sign up' }}
+        </button>
+      </form>
+    </app-glass-card>
+
+    <button type="button" class="auth-switch" (click)="toggleMode()">
+      {{ mode() === 'login' ? 'Need an account? Sign up' : 'Have an account? Sign in' }}
+    </button>
+  </div>
+</ion-content>

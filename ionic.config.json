@@ -1,0 +1,7 @@
+{
+  "name": "Splitwisely",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

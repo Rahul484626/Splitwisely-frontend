@@ -1,0 +1,34 @@
+.glass-card {
+  position: relative;
+  z-index: 1;
+  box-sizing: border-box;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.glass-card__label,
+.glass-card__caption {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.glass-card__amount {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 46px;
+  color: var(--text-primary);
+}
+
+.tone-positive {
+  color: var(--positive);
+}
+
+.tone-negative {
+  color: var(--negative);
+}
+
+.tone-neutral {
+  color: var(--neutral);
+}

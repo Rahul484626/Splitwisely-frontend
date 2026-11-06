@@ -1,0 +1,23 @@
+<ion-content [fullscreen]="true">
+  <div class="app-canvas activity-shell">
+    <a routerLink="/dashboard" class="back">← Home</a>
+    <h1>Activity</h1>
+
+    @if (error()) {
+      <p class="error">{{ error() }}</p>
+    }
+
+    <div class="list">
+      @for (a of items(); track a.id) {
+        <a class="row glass-surface" [routerLink]="['/groups', a.groupId]">
+          <div class="title">{{ label(a) }}</div>
+          <div class="muted">{{ a.groupName }} · {{ a.createdAt | date: 'medium' }}</div>
+        </a>
+      } @empty {
+        @if (!error()) {
+          <p class="muted">No activity yet.</p>
+        }
+      }
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,60 @@
+.home-content {
+  --background: var(--bg-base);
+}
+
+.home-shell {
+  box-sizing: border-box;
+  padding: 28px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 100%;
+}
+
+.home-shell__brand {
+  position: relative;
+  z-index: 1;
+  margin-bottom: 8px;
+}
+
+.eyebrow {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.home-shell__brand h1 {
+  margin: 4px 0 8px;
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: var(--text-primary);
+}
+
+.lede {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  max-width: 32ch;
+}
+
+.home-shell__actions {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  gap: 12px;
+}
+
+.home-shell__actions > * {
+  flex: 1;
+}
+
+.btn-ghost {
+  height: 48px;
+  border-radius: var(--radius-control);
+  color: var(--text-primary);
+  font-family: inherit;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: not-allowed;
+  opacity: 0.7;
+}

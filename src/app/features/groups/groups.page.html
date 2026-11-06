@@ -1,0 +1,52 @@
+<ion-content [fullscreen]="true">
+  <div class="app-canvas groups-shell">
+    <header class="groups-shell__header">
+      <div>
+        <a routerLink="/dashboard" class="eyebrow">← Home</a>
+        <h1>Groups</h1>
+      </div>
+      <button type="button" class="linkish" (click)="logout()">Sign out</button>
+    </header>
+
+    <app-glass-card label="New group">
+      <form class="create-row" (ngSubmit)="createGroup()">
+        <input
+          name="groupName"
+          [(ngModel)]="newGroupName"
+          placeholder="e.g. Goa Trip"
+          required
+        />
+        <button class="btn-primary-gradient" type="submit" [disabled]="creating()">
+          {{ creating() ? '…' : 'Create' }}
+        </button>
+      </form>
+    </app-glass-card>
+
+    @if (error()) {
+      <p class="error" role="alert">{{ error() }}</p>
+    }
+
+    @if (loading()) {
+      <p class="muted">Loading groups…</p>
+    } @else if (groups().length === 0) {
+      <p class="muted">No groups yet. Create one to get started.</p>
+    } @else {
+      <div class="group-list">
+        @for (g of groups(); track g.id) {
+          <a class="group-row glass-surface" [routerLink]="['/groups', g.id]">
+            <div>
+              <div class="group-row__name">{{ g.name }}</div>
+              <div class="group-row__meta">{{ g.memberCount }} members · {{ g.currency }}</div>
+            </div>
+            <div class="group-row__net">
+              <div class="amount" [class]="'tone-' + balanceTone(g.myNetMinor)">
+                {{ formatMinor(g.myNetMinor, true) }}
+              </div>
+              <div class="muted">{{ balanceCaption(g.myNetMinor) }}</div>
+            </div>
+          </a>
+        }
+      </div>
+    }
+  </div>
+</ion-content>

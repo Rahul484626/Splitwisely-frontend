@@ -1,0 +1,84 @@
+.expense-shell {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.back {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.expense-form label,
+.expense-form fieldset {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  border: 0;
+  margin: 0;
+  padding: 0;
+}
+
+.expense-form legend {
+  margin-bottom: 6px;
+  color: var(--text-secondary);
+}
+
+.expense-form input,
+.expense-form select {
+  height: 48px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--glass-border);
+  background: rgba(11, 16, 32, 0.55);
+  color: var(--text-primary);
+  padding: 0 14px;
+  font: inherit;
+}
+
+.check-row {
+  flex-direction: row !important;
+  align-items: center;
+  gap: 10px !important;
+  color: var(--text-primary) !important;
+  font-size: 15px !important;
+}
+
+.check-row input {
+  width: 18px;
+  height: 18px;
+  padding: 0;
+}
+
+.error {
+  color: var(--negative);
+  margin: 0;
+}
+
+.muted {
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+}

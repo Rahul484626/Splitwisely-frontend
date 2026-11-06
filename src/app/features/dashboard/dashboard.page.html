@@ -1,0 +1,84 @@
+<ion-content [fullscreen]="true">
+  <div class="app-canvas dash-shell">
+    <header class="dash-shell__header">
+      <div>
+        <div class="eyebrow">Good day</div>
+        <h1>{{ auth.user()?.name || 'Splitwisely' }}</h1>
+      </div>
+      <button type="button" class="linkish" (click)="logout()">Sign out</button>
+    </header>
+
+    @if (error()) {
+      <app-state-message [text]="error()" tone="error" />
+    }
+
+    @if (totals(); as t) {
+      <app-glass-card
+        label="Overall balance"
+        [amount]="formatMinor(t.overallMinor, true)"
+        [caption]="balanceCaption(t.overallMinor) + ' overall'"
+        [tone]="balanceTone(t.overallMinor)"
+      >
+        <div class="split-row">
+          <div>
+            <div class="muted">You owe</div>
+            <div class="amount tone-negative">{{ formatMinor(-t.youOweMinor, true) }}</div>
+          </div>
+          <div>
+            <div class="muted">You are owed</div>
+            <div class="amount tone-positive">{{ formatMinor(t.youAreOwedMinor, true) }}</div>
+          </div>
+        </div>
+      </app-glass-card>
+    }
+
+    <div class="actions">
+      <a class="btn-primary-gradient" routerLink="/groups">Groups</a>
+      <a class="btn-ghost glass-surface" routerLink="/activity">Activity</a>
+    </div>
+
+    <div class="section-head">
+      <h2>Groups</h2>
+      <a routerLink="/groups">See all</a>
+    </div>
+
+    @if (loading()) {
+      <app-state-message text="Loading groups…" />
+    } @else if (groups().length === 0) {
+      <app-state-message text="No groups yet. Create one from Groups." />
+    } @else {
+      <div class="group-list">
+        @for (g of groups().slice(0, 4); track g.id) {
+          <a class="group-row glass-surface" [routerLink]="['/groups', g.id]">
+            <div>
+              <div class="group-row__name">{{ g.name }}</div>
+              <div class="muted">{{ g.memberCount }} members</div>
+            </div>
+            <div class="group-row__net">
+              <div class="amount" [class]="'tone-' + balanceTone(g.myNetMinor)">
+                {{ formatMinor(g.myNetMinor, true) }}
+              </div>
+              <div class="muted">{{ balanceCaption(g.myNetMinor) }}</div>
+            </div>
+          </a>
+        }
+      </div>
+    }
+
+    <div class="section-head">
+      <h2>Recent activity</h2>
+      <a routerLink="/activity">See all</a>
+    </div>
+
+    <div class="activity-list">
+      @for (a of activity(); track a.id) {
+        <div class="activity-row glass-surface">
+          <div class="activity-row__title">{{ activityLabel(a) }}</div>
+          <div class="muted">{{ a.groupName }}</div>
+        </div>
+      } @empty {
+        <app-state-message text="No activity yet." />
+      }
+    </div>
+  </div>
+</ion-content>

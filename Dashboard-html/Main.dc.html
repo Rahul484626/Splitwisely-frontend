@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Dashboard</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#818CF8}a:hover{color:#A5B4FC}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; box-sizing: border-box; background: #0B1020; color: #F8FAFC; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+<div style="position: absolute; top: -120px; left: -100px; width: 360px; height: 360px; border-radius: 50%; background: radial-gradient(circle at center, rgba(99,102,241,0.55), rgba(99,102,241,0) 70%)"></div>
+<div style="position: absolute; bottom: -140px; right: -120px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle at center, rgba(20,184,166,0.45), rgba(20,184,166,0) 70%)"></div>
+<div style="position: absolute; top: 380px; right: -80px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at center, rgba(236,72,153,0.30), rgba(236,72,153,0) 70%)"></div>
+
+<div style="position: relative; box-sizing: border-box; padding: 28px 20px 0; display: flex; flex-direction: column; gap: 16px">
+
+<div style="display: flex; justify-content: space-between; align-items: center; height: 48px">
+<div>
+<div style="font-size: 13px; color: #A5B4CF">Good evening</div>
+<div style="font-size: 24px; font-weight: 700; line-height: 30px">Aarav</div>
+</div>
+<button aria-label="Notifications" style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); color: #F8FAFC; cursor: pointer; padding: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9a6 6 0 0 1 12 0c0 6 2.5 7.5 2.5 7.5h-17S6 15 6 9z"></path><path d="M10 20a2 2 0 0 0 4 0"></path></svg>
+</button>
+</div>
+
+<div style="box-sizing: border-box; padding: 20px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); display: flex; flex-direction: column; gap: 4px">
+<div style="font-size: 13px; color: #A5B4CF">Overall balance</div>
+<div style="font-size: 40px; font-weight: 800; line-height: 46px; color: #34D399; font-variant-numeric: tabular-nums">+₹4,250</div>
+<div style="font-size: 13px; color: #A5B4CF">You are owed overall</div>
+<div style="display: flex; gap: 12px; margin-top: 14px; padding-top: 14px; border-top: 1px solid rgba(255,255,255,0.12)">
+<div style="flex: 1">
+<div style="font-size: 12px; color: #A5B4CF">You owe</div>
+<div style="font-size: 20px; font-weight: 700; color: #FB7185; font-variant-numeric: tabular-nums">−₹1,820</div>
+</div>
+<div style="flex: 1">
+<div style="font-size: 12px; color: #A5B4CF">You are owed</div>
+<div style="font-size: 20px; font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹6,070</div>
+</div>
+</div>
+</div>
+
+<div style="display: flex; gap: 12px">
+<button style="flex: 1; height: 48px; border: 0; border-radius: 14px; background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #FFFFFF; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Add expense</button>
+<button style="flex: 1; height: 48px; border-radius: 14px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); color: #F8FAFC; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">Settle up</button>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 8px">
+<div style="font-size: 17px; font-weight: 700">Groups</div>
+<a href="#" style="font-size: 13px; font-weight: 600; text-decoration: none">See all</a>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 10px">
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; height: 64px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="width: 44px; height: 44px; border-radius: 14px; background: rgba(20,184,166,0.28); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">G</div>
+<div style="flex: 1">
+<div style="font-size: 15px; font-weight: 600">Goa Trip</div>
+<div style="font-size: 12px; color: #A5B4CF">4 members</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 15px; font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹3,400</div>
+<div style="font-size: 11px; color: #A5B4CF">you are owed</div>
+</div>
+</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; height: 64px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="width: 44px; height: 44px; border-radius: 14px; background: rgba(99,102,241,0.30); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">F</div>
+<div style="flex: 1">
+<div style="font-size: 15px; font-weight: 600">Flat 402</div>
+<div style="font-size: 12px; color: #A5B4CF">3 members</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 15px; font-weight: 700; color: #FB7185; font-variant-numeric: tabular-nums">−₹1,820</div>
+<div style="font-size: 11px; color: #A5B4CF">you owe</div>
+</div>
+</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; height: 64px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="width: 44px; height: 44px; border-radius: 14px; background: rgba(236,72,153,0.28); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px">W</div>
+<div style="flex: 1">
+<div style="font-size: 15px; font-weight: 600">Weekend Cricket</div>
+<div style="font-size: 12px; color: #A5B4CF">8 members</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 15px; font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹2,670</div>
+<div style="font-size: 11px; color: #A5B4CF">you are owed</div>
+</div>
+</div>
+</div>
+
+<div style="font-size: 17px; font-weight: 700; margin-top: 8px">Recent activity</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 10px 14px; height: 56px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="flex: 1">
+<div style="font-size: 14px; font-weight: 600">Meera added “Scooter rental”</div>
+<div style="font-size: 12px; color: #A5B4CF">Goa Trip · you owe ₹600</div>
+</div>
+<div style="font-size: 12px; color: #A5B4CF">Today</div>
+</div>
+
+</div>
+
+<nav aria-label="Main" style="position: absolute; left: 14px; right: 14px; bottom: 14px; height: 68px; box-sizing: border-box; padding: 0 8px; border-radius: 28px; background: rgba(255,255,255,0.10); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); display: flex; align-items: center; justify-content: space-around">
+<button aria-label="Home" aria-current="page" style="display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; color: #818CF8; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; padding: 4px 8px; min-width: 44px; min-height: 44px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l9-8 9 8v9a1 1 0 0 1-1 1h-5v-6H9v6H4a1 1 0 0 1-1-1z"></path></svg>Home</button>
+<button aria-label="Groups" style="display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; color: #A5B4CF; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; padding: 4px 8px; min-width: 44px; min-height: 44px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="9" cy="8" r="3.5"></circle><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"></path><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14.3c2.2.7 3.5 2.6 3.5 5.7"></path></svg>Groups</button>
+<button aria-label="Add expense" style="width: 52px; height: 52px; border-radius: 50%; border: 0; background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer; padding: 0">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg></button>
+<button aria-label="Activity" style="display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; color: #A5B4CF; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; padding: 4px 8px; min-width: 44px; min-height: 44px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 12h4l3-8 4 16 3-8h4"></path></svg>Activity</button>
+<button aria-label="Profile" style="display: flex; flex-direction: column; align-items: center; gap: 3px; background: none; border: 0; color: #A5B4CF; font-family: inherit; font-size: 11px; font-weight: 600; cursor: pointer; padding: 4px 8px; min-width: 44px; min-height: 44px">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"></circle><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"></path></svg>Profile</button>
+</nav>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>

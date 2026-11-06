@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Splitwisely</string>
+    <string name="title_activity_main">Splitwisely</string>
+    <string name="package_name">com.rahul.splitwisely</string>
+    <string name="custom_url_scheme">com.rahul.splitwisely</string>
+</resources>

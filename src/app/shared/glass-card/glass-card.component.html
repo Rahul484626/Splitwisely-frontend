@@ -1,0 +1,12 @@
+<section class="glass-card glass-surface">
+  @if (label) {
+    <div class="glass-card__label">{{ label }}</div>
+  }
+  @if (amount) {
+    <div class="glass-card__amount amount" [class]="'tone-' + tone">{{ amount }}</div>
+  }
+  @if (caption) {
+    <div class="glass-card__caption">{{ caption }}</div>
+  }
+  <ng-content />
+</section>

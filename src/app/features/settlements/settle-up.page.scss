@@ -1,0 +1,111 @@
+.settle-shell {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.back {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+}
+
+h1 {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.panel {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.panel-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.panel h2 {
+  margin: 0 0 4px;
+  font-size: 15px;
+}
+
+.linkish {
+  background: transparent;
+  border: 0;
+  color: var(--accent);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.suggest-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  background: transparent;
+  border: 0;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  padding: 8px 0;
+  cursor: pointer;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.settle-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.settle-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.settle-form input,
+.settle-form select {
+  height: 48px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--glass-border);
+  background: rgba(11, 16, 32, 0.55);
+  color: var(--text-primary);
+  padding: 0 14px;
+  font: inherit;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.tone-positive {
+  color: var(--positive);
+}
+.error {
+  color: var(--negative);
+  margin: 0;
+}
+.muted {
+  color: var(--text-secondary);
+  position: relative;
+  z-index: 1;
+}

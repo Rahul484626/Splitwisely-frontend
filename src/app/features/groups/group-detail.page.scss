@@ -1,0 +1,152 @@
+.detail-shell {
+  box-sizing: border-box;
+  min-height: 100%;
+  padding: 24px 20px 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.back {
+  position: relative;
+  z-index: 1;
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 600;
+  width: fit-content;
+}
+
+.detail-header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.detail-header h1 {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.add-link {
+  text-decoration: none;
+  padding: 0 16px;
+  height: 44px;
+  white-space: nowrap;
+}
+
+.expense-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expense-list li,
+.panel ul li,
+.simple-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.expense-list li > div,
+.panel ul li > div {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.actions {
+  position: relative;
+  z-index: 1;
+}
+
+.actions a {
+  display: inline-flex;
+  text-decoration: none;
+  padding: 0 18px;
+}
+
+.amount {
+  font-variant-numeric: tabular-nums;
+  font-weight: 700;
+}
+.tone-positive {
+  color: var(--positive);
+}
+.tone-negative {
+  color: var(--negative);
+}
+.tone-neutral {
+  color: var(--neutral);
+}
+
+.linkish {
+  background: transparent;
+  border: 0;
+  color: var(--negative);
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.muted {
+  color: var(--text-secondary);
+  font-size: 13px;
+}
+
+.panel {
+  position: relative;
+  z-index: 1;
+  padding: 16px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 15px;
+}
+
+.panel ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.panel li {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.add-member {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.add-member input {
+  flex: 1;
+  height: 44px;
+  border-radius: var(--radius-control);
+  border: 1px solid var(--glass-border);
+  background: rgba(11, 16, 32, 0.55);
+  color: var(--text-primary);
+  padding: 0 12px;
+  font: inherit;
+}
+
+.error {
+  color: var(--negative);
+  position: relative;
+  z-index: 1;
+}

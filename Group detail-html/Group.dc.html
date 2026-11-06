@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Group detail</title>
+<script src="./vendor/react.js"></script>
+<script src="./vendor/react-dom.js"></script>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="position: relative; width: 390px; height: 844px; overflow: hidden; box-sizing: border-box; background: #0B1020; color: #F8FAFC; font-family: 'Plus Jakarta Sans', system-ui, sans-serif">
+<div style="position: absolute; top: -100px; right: -120px; width: 380px; height: 380px; border-radius: 50%; background: radial-gradient(circle at center, rgba(20,184,166,0.45), rgba(20,184,166,0) 70%)"></div>
+<div style="position: absolute; bottom: -140px; left: -120px; width: 400px; height: 400px; border-radius: 50%; background: radial-gradient(circle at center, rgba(99,102,241,0.50), rgba(99,102,241,0) 70%)"></div>
+<div style="position: absolute; top: 420px; right: -90px; width: 220px; height: 220px; border-radius: 50%; background: radial-gradient(circle at center, rgba(236,72,153,0.28), rgba(236,72,153,0) 70%)"></div>
+
+<div style="position: relative; box-sizing: border-box; padding: 24px 20px 0; display: flex; flex-direction: column; gap: 14px">
+
+<div style="display: flex; align-items: center; gap: 12px; height: 48px">
+<button aria-label="Back" style="width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); color: #F8FAFC; cursor: pointer; padding: 0">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"></path></svg>
+</button>
+<div style="flex: 1">
+<div style="font-size: 20px; font-weight: 700; line-height: 24px">Goa Trip</div>
+<div style="font-size: 12px; color: #A5B4CF">4 members · INR</div>
+</div>
+</div>
+
+<div style="box-sizing: border-box; padding: 18px 20px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); backdrop-filter: blur(20px) saturate(140%); -webkit-backdrop-filter: blur(20px) saturate(140%); display: flex; justify-content: space-between; align-items: center">
+<div>
+<div style="font-size: 13px; color: #A5B4CF">Your balance</div>
+<div style="font-size: 32px; font-weight: 800; line-height: 38px; color: #34D399; font-variant-numeric: tabular-nums">+₹3,400</div>
+<div style="font-size: 13px; color: #A5B4CF">You are owed in this group</div>
+</div>
+<button style="height: 44px; padding: 0 18px; border: 0; border-radius: 14px; background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #FFFFFF; font-family: inherit; font-size: 14px; font-weight: 600; cursor: pointer">Settle up</button>
+</div>
+
+<div style="box-sizing: border-box; padding: 16px; border-radius: 20px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16); display: flex; flex-direction: column; gap: 10px">
+<div style="font-size: 15px; font-weight: 700">Simplified payments</div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px">
+<div><span style="font-weight: 600">Meera</span> <span style="color: #A5B4CF">pays you</span></div>
+<div style="font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹2,200</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px">
+<div><span style="font-weight: 600">Kabir</span> <span style="color: #A5B4CF">pays you</span></div>
+<div style="font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹1,200</div>
+</div>
+<div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px">
+<div><span style="font-weight: 600">Kabir</span> <span style="color: #A5B4CF">pays Isha</span></div>
+<div style="font-weight: 600; color: #A5B4CF; font-variant-numeric: tabular-nums">₹200</div>
+</div>
+</div>
+
+<div style="display: flex; justify-content: space-between; align-items: baseline; margin-top: 6px">
+<div style="font-size: 17px; font-weight: 700">Expenses</div>
+<div style="font-size: 12px; color: #A5B4CF">Newest first</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 8px">
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 8px 14px; height: 56px; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="flex: 1">
+<div style="font-size: 14px; font-weight: 600">Taxi to airport</div>
+<div style="font-size: 12px; color: #A5B4CF">Isha paid ₹4,800</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 14px; font-weight: 700; color: #FB7185; font-variant-numeric: tabular-nums">−₹1,200</div>
+<div style="font-size: 11px; color: #A5B4CF">you owe</div>
+</div>
+</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 8px 14px; height: 56px; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="flex: 1">
+<div style="font-size: 14px; font-weight: 600">Dinner at the shack</div>
+<div style="font-size: 12px; color: #A5B4CF">Kabir paid ₹3,200</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 14px; font-weight: 700; color: #FB7185; font-variant-numeric: tabular-nums">−₹800</div>
+<div style="font-size: 11px; color: #A5B4CF">you owe</div>
+</div>
+</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 8px 14px; height: 56px; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="flex: 1">
+<div style="font-size: 14px; font-weight: 600">Scooter rental</div>
+<div style="font-size: 12px; color: #A5B4CF">Meera paid ₹2,400</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 14px; font-weight: 700; color: #FB7185; font-variant-numeric: tabular-nums">−₹600</div>
+<div style="font-size: 11px; color: #A5B4CF">you owe</div>
+</div>
+</div>
+<div style="box-sizing: border-box; display: flex; align-items: center; gap: 12px; padding: 8px 14px; height: 56px; border-radius: 18px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.16)">
+<div style="flex: 1">
+<div style="font-size: 14px; font-weight: 600">Villa booking</div>
+<div style="font-size: 12px; color: #A5B4CF">You paid ₹8,000</div>
+</div>
+<div style="text-align: right">
+<div style="font-size: 14px; font-weight: 700; color: #34D399; font-variant-numeric: tabular-nums">+₹6,000</div>
+<div style="font-size: 11px; color: #A5B4CF">you lent</div>
+</div>
+</div>
+</div>
+
+</div>
+
+<button aria-label="Add expense to this group" style="position: absolute; right: 20px; bottom: 24px; height: 52px; padding: 0 20px; border: 0; border-radius: 26px; background: linear-gradient(135deg, #4F46E5, #7C3AED); color: #FFFFFF; display: flex; align-items: center; gap: 8px; font-family: inherit; font-size: 15px; font-weight: 600; cursor: pointer">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"></path></svg>Add expense</button>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+renderVals() {
+return {};
+}
+}
+</script>
+</body>
+</html>
